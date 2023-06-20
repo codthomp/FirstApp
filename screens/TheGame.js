@@ -2,8 +2,6 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import {useState} from 'react';
-// import { createDrawerNavigator } from '@react-navigation/drawer';
-// import { NavigationContainer } from '@react-navigation/native';
 
 export default function TheGameScreen() {
     const [timesPressed, setTimesPressed] = useState(0);
@@ -16,8 +14,8 @@ export default function TheGameScreen() {
     }
 
    return (
-<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-<Text style={{fontSize:16,fontWeight:'700'}}>Game Screen</Text>
+<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#000' }}>
+<Text style={{fontSize:16,fontWeight:'700', color: 'turquoise'}}>Game Screen</Text>
        <Text style={{color: 'white'}}>Yo this is sick!</Text>
        <Text style={{color: 'red'}}>I just lost the game</Text>
        <Text style={{fontWeight: 'bold', color: 'green'}}>This is my first app
@@ -25,6 +23,9 @@ export default function TheGameScreen() {
          </Text>
        </Text>
        <Text style={{color: 'white'}}>Yo this is ~sick~!</Text>
+
+       <Text style={{fontSize:16,fontWeight:'700', color: 'turquoise', top: -350, right: 150}}>Top Left</Text>
+       <Text style={{fontSize:16,fontWeight:'700', color: 'turquoise', top: -370, right: -150}}>Top Right</Text>
  
        <Pressable
          onPress={() => {setTimesPressed(current => current + 1);}}
@@ -70,29 +71,5 @@ export default function TheGameScreen() {
       backgroundColor: '#000',
       alignItems: 'center',
       justifyContent: 'center',
-    },
-  
-    buttonContainer: {
-      width: 320,
-      height: 68,
-      marginHorizontal: 20,
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 3,
-    },
-    button: {
-      borderRadius: 10,
-      width: '100%',
-      height: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'row',
-    },
-    buttonIcon: {
-      paddingRight: 8,
-    },
-    buttonLabel: {
-      color: '#fff',
-      fontSize: 16,
     },
   });
