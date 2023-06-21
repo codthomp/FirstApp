@@ -9,12 +9,6 @@ const Separator = () => <View style={styles.separator} />;
 export default function CombatScreen({ navigation }) {
    return (
 <View style={styles.container} >
-    <LinearGradient
-        // Background Linear Gradient
-        // colors={['rgba(0,0,0,0.8)', 'transparent']}
-        colors={['#000', 'transparent', '#FF0000']}
-        style={styles.LinearGradient}
-      />
 <Text style={styles.TitleText}>Combat Screen</Text>
 <Separator />
 <Button onPress={() => 
@@ -35,6 +29,12 @@ export default function CombatScreen({ navigation }) {
         />
         <Button
           title="Right button"
+          onPress={() => Alert.alert('Right button pressed')}
+        />
+      </View>
+      <View style={{borderWidth: 6, borderColor: '#fff', borderRadius: 6}}>
+      <Button
+          title=""
           onPress={() => Alert.alert('Right button pressed')}
         />
       </View>

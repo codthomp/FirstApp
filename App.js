@@ -8,7 +8,7 @@ import ProfileScreen from './screens/Profile';
 import TheGameScreen from './screens/TheGame';
 import SettingsScreen from './screens/Settings';
 import CombatScreen from './screens/Combat';
-// import { LinearGradient } from 'expo-linear-gradient';
+import ListPageScreen from './screens/ListPage';
 
 
 const Drawer = createDrawerNavigator();
@@ -50,6 +50,7 @@ export default function App() {
   <Drawer.Screen name="Profile" component={ProfileScreen} />
   <Drawer.Screen name="Settings" component={SettingsScreen} />
   <Drawer.Screen name="Combat" component={CombatScreen} />
+  <Drawer.Screen name="ListPage" component={ListPageScreen} />
 </Drawer.Navigator>
 </NavigationContainer>
 
