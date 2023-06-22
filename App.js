@@ -10,7 +10,7 @@ import SettingsScreen from './screens/Settings';
 import CombatScreen from './screens/Combat';
 import ListPageScreen from './screens/ListPage';
 
-
+const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 // function MyDrawer({ navigation }) {
@@ -45,13 +45,15 @@ export default function App() {
   return (
 
 <NavigationContainer theme={DarkTheme}>
-<Drawer.Navigator initialRouteName="TheGame"> 
-  <Drawer.Screen name="TheGame" component={TheGameScreen} />
-  <Drawer.Screen name="Profile" component={ProfileScreen} />
-  <Drawer.Screen name="Settings" component={SettingsScreen} />
-  <Drawer.Screen name="Combat" component={CombatScreen} />
-  <Drawer.Screen name="ListPage" component={ListPageScreen} />
-</Drawer.Navigator>
+  <Drawer.Navigator initialRouteName="TheGame"> 
+    {/* <Stack.Navigator> */}
+      <Drawer.Screen name="TheGame" component={TheGameScreen} />
+      <Drawer.Screen name="Profile" component={ProfileScreen} />
+      <Drawer.Screen name="Settings" component={SettingsScreen} />
+      <Drawer.Screen name="ListPage" component={ListPageScreen} />
+      <Drawer.Screen name="Combat" component={CombatScreen} options={{drawerItemStyle: { height: 0 }}}/>
+    {/* </Stack.Navigator> */}
+  </Drawer.Navigator>
 </NavigationContainer>
 
   );

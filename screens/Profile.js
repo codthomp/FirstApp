@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Alert } from "react-native";
+// import PlayerData from '../components/PlayerData.js';
 
 export default function ProfileScreen({ navigation }) {
+  const [player, setPlayer] = useState({ name: 'TheThird0ne', health: 50, attack: 15, defense: 8});
    return (
 <View style={styles.container}>
 <Text style={{fontSize:18,fontWeight:'700', color: 'turquoise', alignItems: 'center'}}>Manage and Equip your gear here</Text>
@@ -17,16 +19,19 @@ flexDirection: 'row', justifyContent: 'space-between'}}> */}
    <Text style={{fontSize:14,}}>   </Text>
    </View> */}
    <View style ={{textAlign: 'left'}}>
+    <View>
+    <Text style={{fontSize:18,fontWeight:'700', color: 'grey', top: 30}}>Player Name: {player.name}</Text>
+    </View>
    <View>
-   <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Max HP:     </Text>
+   <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Max HP: {player.health}</Text>
    </View>
    <View>
-   <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Attack:     </Text>
+   <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Attack: {player.attack}</Text>
    </View>
    <View>
-   <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Defense:     </Text>
+   <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Defense: {player.defense}</Text>
    </View>
-   <View>
+   {/* <View>
    <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Evasion:     </Text>
    </View>
    <View>
@@ -46,7 +51,7 @@ flexDirection: 'row', justifyContent: 'space-between'}}> */}
    </View>
    <View>
    <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Rare item find:     </Text>
-   </View>
+   </View> */}
    </View>
 
 {/* </View> */}

@@ -1,11 +1,15 @@
-import React, { useState,useEffect } from 'react';
-import { View, Text, Button, TextInput, StyleSheet, ScrollView, RefreshControl, FlatList } from "react-native";
+import React, { useState, useEffect, useRoute } from 'react';
+import { View, Text, Button, TextInput, StyleSheet, ScrollView, RefreshControl, TouchableHighlight } from "react-native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
+import CombatScreen from './Combat';
 
 export default function ListPageScreen({ navigation }) {
+    const [player, setPlayer] = useState({ name: 'TheThird0ne', health: 50, attack: 15, defense: 8});
 
     var pageLimit = 10;
+
+    const isFocused = useIsFocused();
 
     const [enemyType, setEnemyType] = useState([
         { name: 'Crow', health: 5, attack: 11, defense: 7, key: 1},
@@ -14,23 +18,23 @@ export default function ListPageScreen({ navigation }) {
         { name: 'Zombie', health: 50, attack: 23, defense: 17, key: 4}
        ]);
 
-   const [enemies, setEnemies] = useState([
-    { name: 'Crow', health: 5, attack: 11, defense: 7, key: 1},
-    { name: 'Wolf', health: 15, attack: 30, defense: 23, key: 2},
-    { name: 'Bat', health: 3, attack: 7, defense: 2, key: 3},
-    { name: 'Zombie', health: 50, attack: 23, defense: 17, key: 4},
-    { name: 'Crow', health: 5, attack: 11, defense: 7, key: 5},
-    { name: 'Bat', health: 3, attack: 7, defense: 2, key: 6},
-    { name: 'Wolf', health: 15, attack: 30, defense: 23, key: 7},
-    { name: 'Crow', health: 5, attack: 11, defense: 7, key: 8},
-    { name: 'Bat', health: 3, attack: 7, defense: 2, key: 9},
-   ]);
+//    const [enemies, setEnemies] = useState([
+//     { name: 'Crow', health: 5, attack: 11, defense: 7, key: 1},
+//     { name: 'Wolf', health: 15, attack: 30, defense: 23, key: 2},
+//     { name: 'Bat', health: 3, attack: 7, defense: 2, key: 3},
+//     { name: 'Zombie', health: 50, attack: 23, defense: 17, key: 4},
+//     { name: 'Crow', health: 5, attack: 11, defense: 7, key: 5},
+//     { name: 'Bat', health: 3, attack: 7, defense: 2, key: 6},
+//     { name: 'Wolf', health: 15, attack: 30, defense: 23, key: 7},
+//     { name: 'Crow', health: 5, attack: 11, defense: 7, key: 8},
+//     { name: 'Bat', health: 3, attack: 7, defense: 2, key: 9},
+//    ]);
 
-   const [enemies2, setEnemies2] = useState([
-    { name: 'Crow', health: 5, attack: 11, defense: 7, key: 1},
-   ]);
+//    const [enemies2, setEnemies2] = useState([
+//     { name: 'Crow', health: 5, attack: 11, defense: 7, key: 1},
+//    ]);
 
-   const [enemies3, setEnemies3] = useState([]);
+   const [enemies3, setEnemies3] = React.useState([]);
    const fillPageHandler = () => {
     fillPage();
  }
@@ -59,6 +63,11 @@ export default function ListPageScreen({ navigation }) {
           };
     }
 
+    React.useEffect(()=>{
+      if(isFocused){
+        fillPage();
+      }
+     },[isFocused])
 
    return (
     useEffect(() => {fillPage()}, []),
@@ -67,8 +76,10 @@ export default function ListPageScreen({ navigation }) {
         <Text style={{fontSize:8,fontWeight:'700', color: 'yellow'}}>drag down to refresh</Text>
 
         {/* <FlatList data={enemies3} renderItem={({ item }) => (
-            <View></View>
-        )}/> */}
+            <Text style={styles.item}>{item.name} HP: {item.health} Att: {item.attack} Def: {item.defense}</Text>
+        )}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
+        scrollIndicatorInsets={{ right: 1 }}/> */}
 
         <ScrollView scrollIndicatorInsets={{ right: 1 }}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
@@ -76,7 +87,11 @@ export default function ListPageScreen({ navigation }) {
         { enemies3.map((item) => (
                 // <View key={item.key}>
                 <View>
-                    <Text style={styles.item}>{item.name} HP: {item.health} Att: {item.attack} Def: {item.defense}</Text>
+                    <TouchableHighlight onPress={() => navigation.navigate(
+                        {name: 'Combat', params: {enemyName: item.name, enemyHealth: item.health, enemyAttack: item.attack, enemyDefense: item.defense}, merge: true}
+                        )}>
+                        <Text style={styles.itemProp}>{item.name} HP: {item.health} Att: {item.attack} Def: {item.defense}</Text>
+                    </TouchableHighlight>
                 </View>   
             )
         )}
@@ -146,7 +161,7 @@ const styles = StyleSheet.create({
     whiteText: {
         color: 'white',
     },
-    item: {
+    itemProp: {
         marginTop: 20,
         padding: 15,
         backgroundColor: 'grey',
