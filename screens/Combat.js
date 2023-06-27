@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, Alert } from "react-native";
+import { View, Text, Button, StyleSheet, Alert, ActivityIndicator } from "react-native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer, useRoute, useIsFocused  } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
-import PlayerData from '../components/PlayerData';
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
-
 import AnimatedBar from "react-native-animated-bar";
+// import { player } from '../components/PlayerData';
+import getPlayerName from '../components/PlayerData';
 
 // const Separator = () => <View style={styles.separator} />;
 
 export default function CombatScreen({ navigation, route }) {
-  // const eName = navigation.getParam('enemyName');
-  // console.warn(navigation.route.params)
   const Route = useRoute();
-  const [player, setPlayer] = useState({ name: 'TheThird0ne', health: 5, attack: 15, defense: 30});
+  const [player, setPlayer] = useState({ name: 'TheThird0ne', health: 50, attack: 15, defense: 30});
 
   const [playerHealthProgress, setPlayerHealthProgress] = React.useState(player.health);
   const [enemyHealthProgress, setEnemyHealthProgress] = React.useState(Route.params.enemyHealth);
@@ -28,15 +25,14 @@ export default function CombatScreen({ navigation, route }) {
       setCurrentPotionCount(currentPotionCount - 1);
       if (playerHealthProgress + 10 > player.health) {
       setPlayerHealthProgress(player.health);
-    } else {
-      setPlayerHealthProgress(playerHealthProgress + 10);
-    }
-
-
+      } else {
+        setPlayerHealthProgress(playerHealthProgress + 10);
+      }
     } else {
       Alert.alert('No potions left')
     }
   }
+  
   function attackhandler() {
     damageDealt = 0;
     damageDealt = Math.round((player.attack * 100)/(Route.params.enemyDefense + 100));
@@ -74,7 +70,6 @@ export default function CombatScreen({ navigation, route }) {
     
 <View style={styles.container}>
 <Text style={styles.TitleText}>Combat Screen</Text>
-
 <View style={styles.fixToText}>
 <View>
   <Text style={styles.StatsText}>Player Name: {player.name}</Text>
@@ -96,30 +91,29 @@ export default function CombatScreen({ navigation, route }) {
 <View style={styles.fixToText}>
 <View>
   <Text style={{fontSize:13, fontWeight:'700', color: 'yellow'}}>             HP: {playerHealthProgress}            </Text>
-<AnimatedBar
-            progress={playerHealthProgress/player.health}
-            height={20}
-            borderColor="#DDD"
-            fillColor="tomato"
-            barColor="green"
-            borderRadius={1}
-          />
+  <AnimatedBar
+      progress={playerHealthProgress/player.health}
+      height={20}
+      borderColor="#DDD"
+      fillColor="tomato"
+      barColor="green"
+      borderRadius={1}
+  />
 </View>
 
 <Text>                 </Text>
 
 <View>
-<Text style={{fontSize:13, fontWeight:'700', color: 'yellow'}}>             HP: {enemyHealthProgress}            </Text>
-<AnimatedBar
-            progress={enemyHealthProgress/Route.params.enemyHealth}
-            height={20}
-            borderColor="#DDD"
-            fillColor="tomato"
-            barColor="green"
-            borderRadius={1}
-          />
-</View>
-
+  <Text style={{fontSize:13, fontWeight:'700', color: 'yellow'}}>             HP: {enemyHealthProgress}            </Text>
+  <AnimatedBar
+      progress={enemyHealthProgress/Route.params.enemyHealth}
+      height={20}
+      borderColor="#DDD"
+      fillColor="tomato"
+      barColor="green"
+      borderRadius={1}
+  />
+  </View>
 </View>
 
 <View style={styles.fixToText}>
@@ -134,48 +128,14 @@ export default function CombatScreen({ navigation, route }) {
   <Button onPress={() => 
     usePotionHandler()} title={"Use potion: "+JSON.stringify(currentPotionCount) + "/" + JSON.stringify(MaxpotionCount)} color="#fff" justifyContent='flex-end'/>
 </View>
-
-
-
 </View>
-
-
-
-{/* <Separator /> */}
-{/* <Button onPress={() => 
-    navigation.navigate('TheGame')} title="Go back To Game" color="#fff" justifyContent='flex-end'></Button> */}
-    <View backgroundColor='#fff' justifyContent='flex-end'>
-        <Button onPress={() => 
-            navigation.navigate('TheGame')} title="Go back To Game" color="#000" ></Button>
-    </View>
-    {/* <View style={styles.fixToText}>
-        <Button
-        style={{borderWidth: 6, borderColor: '#fff', borderRadius: 18}}
-          title="Left button"
-          onPress={() => Alert.alert('Left button pressed')}
-        />
-        <Button
-          title=" or "
-          onPress={() => Alert.alert('Hehe secret button')}
-        />
-        <Button
-          title="Right button"
-          onPress={() => Alert.alert('Right button pressed')}
-        />
-      </View> */}
-      {/* <View style={{borderWidth: 6, borderColor: '#fff', borderRadius: 6}}>
-      <Button
-          title=""
-          onPress={() => Alert.alert('Right button pressed')}
-        />
-      </View> */}
+  <View backgroundColor='#fff' justifyContent='flex-end'>
+    <Button onPress={() => 
+      navigation.navigate('TheGame')} title="Go back To Game" color="#000" ></Button>
+  </View>
 </View>
    );
-
-
-   
  }
-
 
  const styles = StyleSheet.create({
     container: {
@@ -199,9 +159,7 @@ export default function CombatScreen({ navigation, route }) {
       fontSize:13,
       fontWeight:'700',
       color: 'orange'
-      // justifyContent: 'flex-start'
-  },
-
+    },
     Button: {
         color: '#fff',
         backgroundColor: '#fff',
@@ -210,24 +168,23 @@ export default function CombatScreen({ navigation, route }) {
     fixToText: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-      },
+    },
     separator: {
         marginVertical: 8,
         color: 'white',
         borderBottomColor: 'white',
         borderBottomWidth: StyleSheet.hairlineWidth,
-      },
-      linearGradient: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 5,
-        height: 200,
-        width: 200,
-      },
-      Button:{
-        marginRight:40,
-        marginLeft:40,
-        marginTop:10,
     },
-
+    linearGradient: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 5,
+      height: 200,
+       width: 200,
+    },
+    Button:{
+       marginRight:40,
+      marginLeft:40,
+      marginTop:10,
+    },
 });

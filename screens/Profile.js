@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Alert } from "react-native";
+import getPlayerName from '../components/PlayerData';
 // import PlayerData from '../components/PlayerData.js';
 
 export default function ProfileScreen({ navigation }) {
@@ -20,7 +21,7 @@ flexDirection: 'row', justifyContent: 'space-between'}}> */}
    </View> */}
    <View style ={{textAlign: 'left'}}>
     <View>
-    <Text style={{fontSize:18,fontWeight:'700', color: 'grey', top: 30}}>Player Name: {player.name}</Text>
+    <Text style={{fontSize:18,fontWeight:'700', color: 'grey', top: 30}}>Player Name: {getPlayerName()}</Text>
     </View>
    <View>
    <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Max HP: {player.health}</Text>
