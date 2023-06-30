@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Alert, ActivityIndicator } from "react-native";
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer, useRoute, useIsFocused  } from '@react-navigation/native';
+import { useRoute, useIsFocused  } from '@react-navigation/native';
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 import AnimatedBar from "react-native-animated-bar";
-// import { player } from '../components/PlayerData';
-import getPlayerName from '../components/PlayerData';
-
-// const Separator = () => <View style={styles.separator} />;
 
 export default function CombatScreen({ navigation, route }) {
   const Route = useRoute();
@@ -140,13 +135,7 @@ export default function CombatScreen({ navigation, route }) {
  const styles = StyleSheet.create({
     container: {
       flex: 1,
-    //   backgroundColor: '#000',
       alignItems: 'center',
-    //   justifyContent: 'center',
-    //   height: 700,
-    // borderWidth: 6,
-    // borderColor: '#fff',
-    // borderRadius: 4
     },
 
     TitleText: {

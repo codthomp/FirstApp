@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, StyleSheet } from "react-native";
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
 
 export default function SettingsScreen({ navigation }) {
    const [name, setName] = useState('Cody');
@@ -38,50 +36,31 @@ export default function SettingsScreen({ navigation }) {
  }
 
 
- const styles = StyleSheet.create({
+const styles = StyleSheet.create({
    container: {
-     flex: 1,
-   //   alignItems: 'center',
-   //   justifyContent: 'center',
-   //   height: 700,
-   // borderWidth: 6,
-   // borderColor: '#fff',
-   // borderRadius: 4
+      flex: 1,
    },
 
    TitleText: {
-       fontSize:20,
-       fontWeight:'700',
-       color: 'turquoise',
-       justifyContent: 'flex-start'
+      fontSize: 20,
+      fontWeight: '700',
+      color: 'turquoise',
+      justifyContent: 'flex-start'
    },
 
    Button: {
-       color: '#fff',
-       backgroundColor: '#fff',
-       justifyContent: 'flex-end'
+      color: '#fff',
+      backgroundColor: '#fff',
+      justifyContent: 'flex-end'
    },
    fixToText: {
-       flexDirection: 'row',
-       justifyContent: 'space-between',
-     },
-   separator: {
-       marginVertical: 8,
-       color: '#000',
-       borderBottomColor: '#fff',
-       borderBottomWidth: StyleSheet.hairlineWidth,
-     },
-     linearGradient: {
-       alignItems: 'center',
-       justifyContent: 'center',
-       borderRadius: 5,
-       height: 200,
-       width: 200,
-     },
-     Button:{
-       marginRight:40,
-       marginLeft:40,
-       marginTop:10,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+   },
+   Button: {
+      marginRight: 40,
+      marginLeft: 40,
+      marginTop: 10,
    },
    buttonContainer: {
       marginTop: 20,

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, Alert } from "react-native";
-import getPlayerName from '../components/PlayerData';
-// import PlayerData from '../components/PlayerData.js';
+import { View, Text, StyleSheet, Alert } from "react-native";
 
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen({ }) {
   const [player, setPlayer] = useState({ name: 'TheThird0ne', health: 50, attack: 15, defense: 8});
    return (
 <View style={styles.container}>
@@ -21,7 +19,7 @@ flexDirection: 'row', justifyContent: 'space-between'}}> */}
    </View> */}
    <View style ={{textAlign: 'left'}}>
     <View>
-    <Text style={{fontSize:18,fontWeight:'700', color: 'grey', top: 30}}>Player Name: {getPlayerName()}</Text>
+    <Text style={{fontSize:18,fontWeight:'700', color: 'grey', top: 30}}>Player Name: {player.name}</Text>
     </View>
    <View>
    <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Max HP: {player.health}</Text>
@@ -53,33 +51,15 @@ flexDirection: 'row', justifyContent: 'space-between'}}> */}
    <View>
    <Text style={{fontSize:14,fontWeight:'700', color: 'yellow', top: 30}}>Rare item find:     </Text>
    </View> */}
-   </View>
-
-{/* </View> */}
-
-
-
-
-   <View style={{top: 500, borderWidth: 2, borderColor: 'grey', borderRadius: 18,
-backgroundColor: 'tan'}}>
-
-   
-     <Button onPress={() => navigation.navigate('TheGame')} title="Go back To Game"></Button>
-   </View>
-</View>
-   );
- }
+      </View>
+    </View>
+  );
+}
 
 
  const styles = StyleSheet.create({
    container: {
      flex: 1,
-   //   alignItems: 'center',
-   //   justifyContent: 'center',
-   //   height: 700,
-   // borderWidth: 6,
-   // borderColor: '#fff',
-   // borderRadius: 4
    },
 
    TitleText: {
@@ -97,19 +77,6 @@ backgroundColor: 'tan'}}>
    fixToText: {
        flexDirection: 'row',
        justifyContent: 'space-between',
-     },
-   separator: {
-       marginVertical: 8,
-       color: '#000',
-       borderBottomColor: '#fff',
-       borderBottomWidth: StyleSheet.hairlineWidth,
-     },
-     linearGradient: {
-       alignItems: 'center',
-       justifyContent: 'center',
-       borderRadius: 5,
-       height: 200,
-       width: 200,
      },
      Button:{
        marginRight:40,

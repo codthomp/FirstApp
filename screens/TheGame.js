@@ -29,7 +29,6 @@ export default function TheGameScreen() {
  
        <Pressable
          onPress={() => {setTimesPressed(current => current + 1);}}
-           /* // [alert('You pressed a button.'),  */
            style={({pressed}) => [
            {
              backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
@@ -47,7 +46,6 @@ export default function TheGameScreen() {
  
        <Pressable
          onPress={() => {setTimesPressed(0);}}
-           /* // [alert('You pressed a button.'),  */
            style={({pressed}) => [
            {
              backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
